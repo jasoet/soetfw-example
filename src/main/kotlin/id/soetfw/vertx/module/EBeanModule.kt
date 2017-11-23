@@ -4,7 +4,9 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import dagger.Module
 import dagger.Provides
+import id.soetfw.vertx.extension.executeMigration
 import id.soetfw.vertx.extension.getStringExcept
+import id.soetfw.vertx.type.Callable
 import io.ebean.EbeanServer
 import io.ebean.EbeanServerFactory
 import io.ebean.config.ServerConfig
@@ -93,6 +95,15 @@ class EBeanModule {
         }
 
         return EbeanServerFactory.create(config)
+    }
+
+    @Singleton
+    @Provides
+    @Named("migration")
+    fun migration(@Named("dataSource") dataSource: DataSource): Callable {
+        return {
+            executeMigration(dataSource)
+        }
     }
 
 }

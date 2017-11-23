@@ -4,6 +4,8 @@ import io.ebean.EbeanServer
 import io.ebean.ExpressionList
 import io.ebean.Query
 import io.ebean.Transaction
+import io.ebean.annotation.Platform
+import io.ebean.dbmigration.DbMigration
 import org.flywaydb.core.Flyway
 import javax.sql.DataSource
 
@@ -46,4 +48,12 @@ fun executeMigration(dataSource: DataSource) {
         setDataSource(dataSource)
     }
     flyway.migrate()
+}
+
+fun generateMigration(ebean: EbeanServer) {
+    val dbMigration = DbMigration.create().apply {
+        setServer(ebean)
+        addPlatform(Platform.POSTGRES, "PostgreSQL")
+    }
+    dbMigration.generateMigration()
 }
