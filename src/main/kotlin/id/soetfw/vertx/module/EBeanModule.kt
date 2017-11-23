@@ -88,7 +88,7 @@ class EBeanModule {
     @Provides
     fun ebeanServer(@Named("dataSource") dataSource: DataSource): EbeanServer {
         val config = ServerConfig().apply {
-            name = "pg"
+            name = "mysql"
             setDataSource(dataSource)
         }
 
