@@ -1,6 +1,6 @@
 package id.soetfw.vertx.security
 
-import id.soetfw.vertx.mongo.Model
+import id.soetfw.vertx.db.Model
 import io.vertx.core.json.JsonObject
 
 /**

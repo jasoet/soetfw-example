@@ -2,7 +2,7 @@ package id.soetfw.vertx.extension
 
 import com.mongodb.MongoClient
 import com.mongodb.WriteResult
-import id.soetfw.vertx.mongo.Model
+import id.soetfw.vertx.db.Model
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Key
 import org.mongodb.morphia.Morphia

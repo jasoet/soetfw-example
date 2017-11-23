@@ -1,6 +1,7 @@
-package id.soetfw.vertx.mongo
+package id.soetfw.vertx.db.mongo
 
 import com.mongodb.WriteResult
+import id.soetfw.vertx.db.Model
 import id.soetfw.vertx.extension.invoke
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Key
