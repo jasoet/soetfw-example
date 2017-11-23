@@ -12,9 +12,9 @@
             <level>info</level>
         </filter>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
-        <file>/var/log/lawble/backend-logstash.log</file>
+        <file>/var/log/jojopi/jojopi-logstash.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/log/lawble/backend-logstash.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <fileNamePattern>/var/log/jojopi/jojopi-logstash.log.%d{yyyy-MM-dd}</fileNamePattern>
             <maxHistory>5</maxHistory>
         </rollingPolicy>
     </appender>
@@ -26,9 +26,9 @@
         <encoder>
             <pattern>%date{dd MMM yyyy;HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %marker%n%ex{full}</pattern>
         </encoder>
-        <file>/var/log/lawble/backend.log</file>
+        <file>/var/log/jojopi/jojopi.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/var/log/lawble/backend.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <fileNamePattern>/var/log/jojopi/jojopi.log.%d{yyyy-MM-dd}</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
