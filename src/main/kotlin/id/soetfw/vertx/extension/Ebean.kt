@@ -43,17 +43,19 @@ operator fun <T : Any> Query<T>.invoke(expression: Query<T>.() -> ExpressionList
     return expression(this).query()
 }
 
-fun executeMigration(dataSource: DataSource) {
+fun DataSource.executeMigration() {
+    val dataSource = this
     val flyway = Flyway().apply {
         setDataSource(dataSource)
     }
     flyway.migrate()
 }
 
-fun generateMigration(ebean: EbeanServer) {
+fun EbeanServer.generateMigrationFile(platform: Platform, prefix: String) {
+    val ebean = this
     val dbMigration = DbMigration.create().apply {
         setServer(ebean)
-        addPlatform(Platform.POSTGRES, "PostgreSQL")
+        addPlatform(platform, prefix)
     }
     dbMigration.generateMigration()
 }
