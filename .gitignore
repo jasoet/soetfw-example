@@ -20,9 +20,6 @@ file-uploads/
 *.iws
 node_modules/
 
-src/main/resources/webroot/assets/
-src/main/resources/application-config.json
-
 # Docker
 Dockerfile
 deployment/docker-compose.yml

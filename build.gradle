@@ -49,6 +49,8 @@ apply plugin: 'ebean'
 group "com.jojonomic"
 version "1.0.0"
 
+mainClassName = "com.jojonomic.simple.Application"
+
 repositories {
     mavenLocal()
     mavenCentral()
