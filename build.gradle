@@ -44,7 +44,7 @@ plugins {
 apply plugin: 'idea'
 apply plugin: 'ebean'
 
-group "id.soetfw"
+group "com.jojonomic"
 version "1.0.0"
 
 repositories {
