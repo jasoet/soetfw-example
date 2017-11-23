@@ -102,7 +102,7 @@ class EBeanModule {
     @Named("migration")
     fun migration(@Named("dataSource") dataSource: DataSource): Callable {
         return {
-            executeMigration(dataSource)
+            dataSource.executeMigration()
         }
     }
 
