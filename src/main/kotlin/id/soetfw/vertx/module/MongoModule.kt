@@ -20,7 +20,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * @author Deny Prasetyo.
  */
 
-@Module(includes = [EnvModule::class])
+@Module(includes = arrayOf(EnvModule::class))
 class MongoModule {
     private val log = logger<MongoModule>()
 

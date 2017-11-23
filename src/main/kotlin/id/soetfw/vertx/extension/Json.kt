@@ -25,7 +25,7 @@ inline fun <reified T : Any> JsonObject.mapTo(): T {
 inline fun <reified T : Any> JsonObject?.toValue(): T? {
     return try {
         this?.mapTo(T::class.java)
-    } catch (ie: IllegalArgumentException) {
+    } catch (ie: Exception) {
         val log = logger("Json Extension")
         log.warn(ie.message, ie)
         null

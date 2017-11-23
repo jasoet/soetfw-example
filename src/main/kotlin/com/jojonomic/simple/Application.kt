@@ -3,6 +3,8 @@ package com.jojonomic.simple
 import com.jojonomic.simple.module.DaggerAppComponent
 import id.soetfw.vertx.extension.buildVertx
 import id.soetfw.vertx.extension.deployVerticle
+import id.soetfw.vertx.extension.executeMigration
+import id.soetfw.vertx.extension.generateMigrationFile
 import id.soetfw.vertx.extension.jsonConfig
 import id.soetfw.vertx.extension.logger
 import id.soetfw.vertx.extension.retrieveConfig
@@ -10,6 +12,7 @@ import id.soetfw.vertx.extension.useLogback
 import id.soetfw.vertx.module.EBeanModule
 import id.soetfw.vertx.module.EnvModule
 import id.soetfw.vertx.module.VertxModule
+import io.ebean.annotation.Platform
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
@@ -34,6 +37,7 @@ object Application {
                     .vertxModule(VertxModule(vertx))
                     .eBeanModule(EBeanModule())
                     .build()
+
 
             log.info("Start deploy Verticle")
             val mainVerticle = app.mainVerticle()

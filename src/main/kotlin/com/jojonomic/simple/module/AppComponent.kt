@@ -6,8 +6,8 @@ import id.soetfw.vertx.module.EBeanModule
 import id.soetfw.vertx.module.EnvModule
 import id.soetfw.vertx.module.VertxModule
 import io.ebean.EbeanServer
-import io.vertx.core.json.JsonObject
 import javax.inject.Singleton
+import javax.sql.DataSource
 
 /**
  * [Documentation Here]
@@ -16,7 +16,9 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [EnvModule::class, VertxModule::class, EBeanModule::class])
+@Component(modules = arrayOf(EnvModule::class, VertxModule::class, EBeanModule::class))
 interface AppComponent {
     fun mainVerticle(): MainVerticle
+    fun ebean(): EbeanServer
+    fun dataSource(): DataSource
 }

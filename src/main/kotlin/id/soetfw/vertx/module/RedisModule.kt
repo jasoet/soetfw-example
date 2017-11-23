@@ -16,7 +16,7 @@ import javax.inject.Singleton
  * @author Deny Prasetyo.
  */
 
-@Module(includes = [EnvModule::class, VertxModule::class])
+@Module(includes = arrayOf(EnvModule::class, VertxModule::class))
 class RedisModule {
     companion object {
         fun redisOption(host: String = "localhost", port: Int = 6379, address: String = "io.vertx.redis"): RedisOptions {

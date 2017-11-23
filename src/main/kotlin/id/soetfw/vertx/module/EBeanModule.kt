@@ -20,7 +20,7 @@ import javax.sql.DataSource
  * [Documentation Here]
  */
 
-@Module(includes = [EnvModule::class])
+@Module(includes = arrayOf(EnvModule::class))
 class EBeanModule {
 
     @Provides
@@ -57,7 +57,6 @@ class EBeanModule {
 
     @Provides
     @Singleton
-    @Named("dataSource")
     fun dataSource(@Named("dbUser") user: String,
                    @Named("dbPassword") password: String,
                    @Named("dbUrl") url: String,
@@ -88,7 +87,7 @@ class EBeanModule {
 
     @Singleton
     @Provides
-    fun ebeanServer(@Named("dataSource") dataSource: DataSource): EbeanServer {
+    fun ebeanServer(dataSource: DataSource): EbeanServer {
         val config = ServerConfig().apply {
             name = "mysql"
             setDataSource(dataSource)
