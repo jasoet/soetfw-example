@@ -18,4 +18,5 @@ data class Item(
         var id: Int? = null,
         var name: String,
         var price: Double,
+        val title: String? = "",
         var description: String) : Model
