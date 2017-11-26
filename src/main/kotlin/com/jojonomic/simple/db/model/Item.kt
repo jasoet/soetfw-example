@@ -1,7 +1,6 @@
 package com.jojonomic.simple.db.model
 
 import id.soetfw.vertx.db.Model
-import io.ebean.annotation.Index
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table

@@ -2,8 +2,12 @@ package id.soetfw.vertx.extension
 
 import io.ebean.EbeanServer
 import io.ebean.ExpressionList
+import io.ebean.Platform
 import io.ebean.Query
 import io.ebean.Transaction
+import io.ebean.config.DbMigrationConfig
+import io.ebean.config.ServerConfig
+import io.ebean.dbmigration.DbMigration
 import org.flywaydb.core.Flyway
 import javax.sql.DataSource
 
@@ -45,7 +49,22 @@ fun DataSource.executeMigration() {
     val dataSource = this
     val flyway = Flyway().apply {
         setDataSource(dataSource)
+        setLocations("classpath:/dbmigration/mysql")
     }
     flyway.migrate()
 }
 
+fun EbeanServer.generateMigrationFile(platform: Platform, prefix: String): String? {
+    val ebean = this
+    val serverConfig = ServerConfig().apply {
+        this.migrationConfig = DbMigrationConfig().apply {
+            applyPrefix = "V"
+        }
+    }
+    val dbMigration = DbMigration().apply {
+        setServerConfig(serverConfig)
+        setServer(ebean)
+        addPlatform(platform, prefix)
+    }
+    return dbMigration.generateMigration()
+}
