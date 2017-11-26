@@ -4,8 +4,6 @@ import io.ebean.EbeanServer
 import io.ebean.ExpressionList
 import io.ebean.Query
 import io.ebean.Transaction
-import io.ebean.annotation.Platform
-import io.ebean.dbmigration.DbMigration
 import org.flywaydb.core.Flyway
 import javax.sql.DataSource
 
@@ -51,11 +49,3 @@ fun DataSource.executeMigration() {
     flyway.migrate()
 }
 
-fun EbeanServer.generateMigrationFile(platform: Platform, prefix: String) {
-    val ebean = this
-    val dbMigration = DbMigration.create().apply {
-        setServer(ebean)
-        addPlatform(platform, prefix)
-    }
-    dbMigration.generateMigration()
-}
