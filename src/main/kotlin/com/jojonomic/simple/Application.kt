@@ -46,7 +46,7 @@ object Application {
             //vertx.deployVerticle(mainVerticle, config)
 
             val dataSource = app.dataSource()
-            dataSource.executeMigration()
+            dataSource.executeMigration("classpath:/dbmigration/mysql")
 
             log.info("Verticle Deployed")
         } catch (e: Exception) {

@@ -45,11 +45,11 @@ operator fun <T : Any> Query<T>.invoke(expression: Query<T>.() -> ExpressionList
     return expression(this).query()
 }
 
-fun DataSource.executeMigration() {
+fun DataSource.executeMigration(location: String) {
     val dataSource = this
     val flyway = Flyway().apply {
         setDataSource(dataSource)
-        setLocations("classpath:/dbmigration/mysql")
+        setLocations(location)
     }
     flyway.migrate()
 }

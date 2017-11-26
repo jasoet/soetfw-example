@@ -96,13 +96,4 @@ class EBeanModule {
         return EbeanServerFactory.create(config)
     }
 
-    @Singleton
-    @Provides
-    @Named("migration")
-    fun migration(@Named("dataSource") dataSource: DataSource): Callable {
-        return {
-            dataSource.executeMigration()
-        }
-    }
-
 }
