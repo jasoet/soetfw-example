@@ -1,6 +1,6 @@
 package com.jojonomic.simple.db.model
 
-import id.soetfw.vertx.db.Model
+import id.yoframework.core.model.Model
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table

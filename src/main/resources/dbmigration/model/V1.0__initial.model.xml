@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE xml>
-<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://ebean-orm.github.io/xml/ns/dbmigration ">
     <changeSet type="apply">
         <createTable name="item" pkName="pk_item">
             <column name="id" type="integer" primaryKey="true"/>

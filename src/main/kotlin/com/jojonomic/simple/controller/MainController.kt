@@ -1,9 +1,9 @@
 package com.jojonomic.simple.controller
 
 import com.jojonomic.simple.handler.ItemHandler
-import id.soetfw.vertx.controller.Controller
-import id.soetfw.vertx.extension.jsonHandler
-import id.soetfw.vertx.extension.orNotFound
+import id.yoframework.web.controller.Controller
+import id.yoframework.web.exception.orNotFound
+import id.yoframework.web.extension.jsonHandler
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.handler.BodyHandler
 import javax.inject.Inject

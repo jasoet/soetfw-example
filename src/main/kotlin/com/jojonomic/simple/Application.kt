@@ -1,17 +1,18 @@
 package com.jojonomic.simple
 
 import com.jojonomic.simple.module.DaggerAppComponent
-import id.soetfw.vertx.extension.buildVertx
-import id.soetfw.vertx.extension.executeMigration
-import id.soetfw.vertx.extension.generateMigrationFile
-import id.soetfw.vertx.extension.jsonConfig
-import id.soetfw.vertx.extension.logger
-import id.soetfw.vertx.extension.retrieveConfig
-import id.soetfw.vertx.extension.useLogback
-import id.soetfw.vertx.module.EBeanModule
-import id.soetfw.vertx.module.EnvModule
-import id.soetfw.vertx.module.VertxModule
-import io.ebean.Platform
+import id.yoframework.core.extension.config.jsonConfig
+import id.yoframework.core.extension.config.retrieveConfig
+import id.yoframework.core.extension.logger.logger
+import id.yoframework.core.extension.logger.useLogback
+import id.yoframework.core.extension.vertx.buildVertx
+import id.yoframework.core.extension.vertx.deployVerticle
+import id.yoframework.core.module.CoreModule
+import id.yoframework.ebean.extension.executeMigration
+import id.yoframework.ebean.extension.generateMigrationFile
+import id.yoframework.ebean.module.EBeanModule
+import id.yoframework.web.module.WebModule
+import io.ebean.annotation.Platform
 import kotlinx.coroutines.experimental.runBlocking
 
 /**
@@ -32,18 +33,21 @@ object Application {
             val config = vertx.retrieveConfig(jsonConfig("application-config.json"))
             log.info("Start initialize components")
             val app = DaggerAppComponent.builder()
-                    .envModule(EnvModule(config))
-                    .vertxModule(VertxModule(vertx))
+                    .coreModule(CoreModule(config, vertx))
+                    .webModule(WebModule())
                     .eBeanModule(EBeanModule())
                     .build()
 
             val ebean = app.ebean()
             val migration = ebean.generateMigrationFile(Platform.MYSQL, "mysql")
 
+            if (migration != null) {
+                log.info("Migration file $migration created!")
+            }
 
             log.info("Start deploy Verticle")
             val mainVerticle = app.mainVerticle()
-            //vertx.deployVerticle(mainVerticle, config)
+            vertx.deployVerticle(mainVerticle, config)
 
             val dataSource = app.dataSource()
             dataSource.executeMigration("classpath:/dbmigration/mysql")
