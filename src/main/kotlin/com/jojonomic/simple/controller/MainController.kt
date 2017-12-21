@@ -31,6 +31,10 @@ class MainController @Inject constructor(override val router: Router,
         itemHandler.getItem(id) orNotFound "Item not found!"
     }
 
+    get("/").jsonHandler {
+        itemHandler.getAll()
+    }
+
     post("/").jsonHandler { itemHandler.insert(this) }
 
 })

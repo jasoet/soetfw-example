@@ -3,5 +3,5 @@
   "DATABASE_USER": "root",
   "DATABASE_PASSWORD": "",
   "DATABASE_DRIVER_CLASSNAME": "com.mysql.jdbc.Driver",
-  "DATABASE_URL": "jdbc:mysql://localhost:3306/jojodb"
+  "DATABASE_URL": "jdbc:mysql://localhost:3306/jojodb?useSSL=false"
 }
