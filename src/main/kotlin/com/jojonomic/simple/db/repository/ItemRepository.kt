@@ -17,14 +17,14 @@ import javax.inject.Singleton
 class ItemRepository @Inject constructor(override val ebean: EbeanServer) :
         Repository<Item, Int>(ebean, Item::class) {
 
-    suspend fun findByName(name: String): List<Item> {
+    fun findByName(name: String): List<Item> {
         return query {
             where()
                     .ilike("name", "%$name%")
         }.findList()
     }
 
-    suspend fun findByPriceMin(price: Double): List<Item> {
+    fun findByPriceMin(price: Double): List<Item> {
         return query {
             where()
                     .gt("price", price)

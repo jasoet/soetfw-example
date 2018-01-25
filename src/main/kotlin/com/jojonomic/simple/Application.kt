@@ -8,7 +8,7 @@ import id.yoframework.core.extension.logger.useLogback
 import id.yoframework.core.extension.vertx.buildVertx
 import id.yoframework.core.extension.vertx.deployVerticle
 import id.yoframework.core.module.CoreModule
-import id.yoframework.ebean.extension.executeMigration
+import id.yoframework.db.executeMigration
 import id.yoframework.ebean.extension.generateMigrationFile
 import id.yoframework.ebean.module.EBeanModule
 import id.yoframework.web.module.WebModule
@@ -33,10 +33,10 @@ object Application {
             val config = vertx.retrieveConfig(jsonConfig("application-config.json"))
             log.info("Start initialize components")
             val app = DaggerAppComponent.builder()
-                    .coreModule(CoreModule(config, vertx))
-                    .webModule(WebModule())
-                    .eBeanModule(EBeanModule())
-                    .build()
+                .coreModule(CoreModule(config, vertx))
+                .webModule(WebModule())
+                .eBeanModule(EBeanModule())
+                .build()
 
             val ebean = app.ebean()
             val migration = ebean.generateMigrationFile(Platform.MYSQL, "mysql")

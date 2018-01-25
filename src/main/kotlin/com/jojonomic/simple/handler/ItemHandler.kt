@@ -2,8 +2,7 @@ package com.jojonomic.simple.handler
 
 import com.jojonomic.simple.db.model.Item
 import com.jojonomic.simple.db.repository.ItemRepository
-import id.yoframework.core.extension.json.getDoubleExcept
-import id.yoframework.core.extension.json.getStringExcept
+import id.yoframework.core.extension.json.getExcept
 import id.yoframework.core.extension.logger.logger
 import id.yoframework.web.exception.orBadRequest
 import id.yoframework.web.extension.jsonBody
@@ -25,25 +24,28 @@ import javax.inject.Singleton
 class ItemHandler @Inject constructor(private val itemRepository: ItemRepository) {
 
     private val log = logger<ItemHandler>()
-    suspend fun insert(context: RoutingContext): JsonObject {
+    fun insert(context: RoutingContext): JsonObject {
         val body = context.jsonBody() orBadRequest "Body is Empty"
-        val name = body.getStringExcept("name", exceptionMessage = "name is required")
-        val price = body.getDoubleExcept("price", exceptionMessage = "price is required")
-        val description = body.getStringExcept("description", "description is required")
+        val name = body.getExcept<String>("name")
+        val price = body.getExcept<Double>("price")
+        val description = body.getExcept<String>("description")
 
         val item = Item(name = name, price = price, description = description)
         itemRepository.save(item)
 
         return json {
-            obj("success" to true,
-                    "item" to item)
+            obj(
+                "success" to true,
+                "item" to item
+            )
         }
     }
 
-    suspend fun getItem(id: Int): Item? {
+    fun getItem(id: Int): Item? {
         return itemRepository.findOne(id)
     }
-    suspend fun getAll(): List<Item> {
+
+    fun getAll(): List<Item> {
         return itemRepository.findAll()
     }
 

@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        yoVersion = "0.1.8"
+        yoVersion = "0.2.4"
         vertxVersion = '3.5.0'
         daggerVersion = '2.12'
         restAssuredVersion = '3.0.3'
@@ -105,5 +105,5 @@ idea {
 task compile(dependsOn: "testClasses")
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.4'
+    gradleVersion = '4.4.1'
 }
